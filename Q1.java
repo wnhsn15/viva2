@@ -81,7 +81,6 @@ public class Q1 {
     }
 
     private static boolean containsDigit(String password) {
-        /*for (char c : password.toCharArray()){*/
         int numCount = 0;
         for (int i = 0; i < password.length(); i++){
             char c = password.charAt(i);
