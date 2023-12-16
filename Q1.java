@@ -34,70 +34,53 @@ public class Q1 {
     
     public static boolean passwordValidation(String password) {
         //Check length
-        if (password.length() < 8){
+        if (password.length() >= 8){
+        } else {
             return false;
         }
         
         //Check for capital letter
-        if (!containsCapital(password)){
-            return false;
+        for (char c : password.toCharArray()){
+            if (Character.isUpperCase(c)){
+            } else {
+                return false;
+            }
         }
         
         //Check for small letter
-        if (!containsSmall(password)){
-            return false;
-        }
-        
-        //Check for 3 digits
-        if (!containsDigit(password)){
-            return false;
-        }
-        
-        //Check for special character
-        if (!containsSpecial(password)){
-            return false;
-        }
-        
-        //If all conditions are met
-        return true;
-    }
-
-    private static boolean containsCapital(String password) {
-        for (char c : password.toCharArray()){
-            if (Character.isUpperCase(c)){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private static boolean containsSmall(String password) {
         for (char c : password.toCharArray()){
             if (Character.isLowerCase(c)){
-                return true;
+            } else {
+                return false;
             }
         }
-        return false;
-    }
-
-    private static boolean containsDigit(String password) {
-        int numCount = 0;
+                
+        //Check for 3 digits
+       int numCount = 0;
         for (int i = 0; i < password.length(); i++){
             char c = password.charAt(i);
             if (Character.isDigit(c)){
                 numCount++;
             }
         }
-        return numCount >= 3;
-    }
-
-    private static boolean containsSpecial(String password) {
+        if (numCount >= 3){
+        } else {
+            return false;
+        }
+        
+        //Check for special character
         Pattern specialChar = Pattern.compile("[^a-zA-Z0-9]");
         Matcher matcher = specialChar.matcher(password);
         int specialCharCount = 0;
         while (matcher.find()){
             specialCharCount++;
         }
-        return specialCharCount == 1;
+        if (specialCharCount == 1){
+        } else {
+            return false;
+        }
+        
+        //If all conditions are met
+        return true;
     }
 }
